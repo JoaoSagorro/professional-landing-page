@@ -1,0 +1,8 @@
+<%= simple_form_for @resource do |f| %>
+  <%= f.input :title %>
+  <%# category is going to be a dropdown menu %>
+  <%= f.input :category %>
+  <%= f.input :link %>
+  <%# submit should have something like "Add resource" as placeholder %>
+  <%= f.submit %>
+<% end %>
