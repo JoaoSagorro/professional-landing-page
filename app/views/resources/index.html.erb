@@ -1,0 +1,14 @@
+<h1>HELLO</h1>
+
+<%= link_to 'Add a resource', new_resource_path %>
+
+<%= if @resources.nill? %>
+  <%= @resources.each do |resource| %>
+    <%= resource.title %>
+    <%= link_to resource.link do %>
+      <button>See more</button>
+    <% end %>
+  <% end %>
+<%= else %>
+  <p>Nothing to display here</p>
+<% end %>
