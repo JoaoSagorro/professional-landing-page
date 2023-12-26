@@ -5,6 +5,7 @@ ruby "3.1.2"
 gem 'devise'
 gem "simple_form", github: "heartcombo/simple_form"
 gem 'rolify'
+gem "rails_admin", "3.0"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
 
@@ -72,3 +73,4 @@ group :test do
 end
 
 gem "pundit", "~> 2.3"
+gem "sassc-rails"

@@ -1,0 +1,14 @@
+<h1>HELLO, THIS IS THE EVENTS INDEX PAGE</h1>
+
+<% if @events.empty? %>
+  <h2>THERE ARE NO EVENTS</h2>
+<% end %>
+
+<% if current_user.admin? %>
+  <p>You're a cool admin I'll let you add an event</p>
+  <%= link_to 'Add event', new_event_path %>
+<% else %>
+  <p>You're not a cool admin</p>
+<% end %>
+
+<%= link_to 'Home page', root_path %>
