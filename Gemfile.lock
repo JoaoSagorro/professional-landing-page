@@ -221,6 +221,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.16.0)
@@ -279,6 +280,7 @@ DEPENDENCIES
   pundit (~> 2.3)
   rails (~> 7.1.2)
   redis (>= 4.0.1)
+  rolify
   selenium-webdriver
   simple_form!
   sprockets-rails
