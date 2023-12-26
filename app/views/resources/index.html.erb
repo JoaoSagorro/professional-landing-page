@@ -2,13 +2,15 @@
 
 <%= link_to 'Add a resource', new_resource_path %>
 
-<%= if @resources.nill? %>
-  <%= @resources.each do |resource| %>
+<% if @resources.empty? %>
+  <p>In construction</p>
+<% else %>
+  <% @resources.each do |resource| %>
+    <%= link_to 'Edit', edit_resource_path(resource) %>
+    <%= link_to 'Destroy', resource_path(resource), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <%= resource.title %>
     <%= link_to resource.link do %>
       <button>See more</button>
     <% end %>
   <% end %>
-<%= else %>
-  <p>Nothing to display here</p>
 <% end %>

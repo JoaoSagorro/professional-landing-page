@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+  before_action :find_params, only: %i[show edit update destroy]
+
   def index
     # Allowed for every user (admin or not)
     @resources = Resource.all
@@ -6,7 +8,6 @@ class ResourcesController < ApplicationController
 
   def show
     # Allowed for every user (admin or not)
-    @resource = Resource.find(params[:id])
   end
 
   def new
@@ -16,12 +17,12 @@ class ResourcesController < ApplicationController
 
   def create
     # Allowed just for admin
-    @user = User.find(params[:user_id])
+    @user = current_user
     @resource = Resource.new(set_params)
     @resource.user = @user
-    @resource.save
+    @resource.save!
     if @resource.save
-      redirect_to resource_path(params[:id])
+      redirect_to resource_path(@resource.id)
     else
       redirect_to :new, status: :unprocessable_entity
     end
@@ -29,13 +30,12 @@ class ResourcesController < ApplicationController
 
   def edit
     # Allowed just for admin
-    @resource = Resource.find(params[:id])
   end
 
   def update
     # Allowed just for admin
     # Revisit this, not sure if correct
-    @user = User.find(params[:user_id])
+    @user = current_user
     @resource = Resource.update(set_params)
     @resource.user = @user
     @resource.save
@@ -43,12 +43,17 @@ class ResourcesController < ApplicationController
 
   def destroy
     # Allowed just for admin
+    @resource.destroy
+    redirect_to resources_path
   end
 
   private
 
-  def set_params
-    params.require(@resource).permit(:title, :category, :link)
+  def find_params
+    @resource = Resource.find(params[:id])
   end
 
+  def set_params
+    params.require(:resource).permit(:title, :category, :link)
+  end
 end
